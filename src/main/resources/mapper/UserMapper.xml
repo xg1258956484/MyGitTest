@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myspringboot1.demos.mapper.UserMapper">
+
+
+    <resultMap id="UserMap" type="com.example.myspringboot1.demos.pojo.UserDTO">
+<!--        <association property="city" javaType="com.example.myspringboot1.demos.pojo.City"/>-->
+<!--        <collection property="userOrders" column="id"  select="getUserOrders" />-->
+        <result property="id" column="id"></result>
+        <collection property="userOrders" ofType="com.example.myspringboot1.demos.pojo.UserOrder">
+            <result property="id" column="oid"/>
+            <result property="orderId" column="orderId"/>
+            <result property="orderName" column="orderName"/>
+        </collection>
+    </resultMap>
+<!--    <resultMap id="UserOrdersMap" type="com.example.myspringboot1.demos.pojo.UserOrder">-->
+<!--        <result property="id" column="id"/>-->
+<!--        <result property="orderId" column="orderId"/>-->
+<!--        <result property="orderName" column="orderName"/>-->
+<!--    </resultMap>-->
+
+    <select id="getUserByNameAndPassWord" parameterType="com.example.myspringboot1.demos.pojo.User" resultMap="UserMap">
+        select u.id,o.id oid,o.orderId,o.orderName from User u
+                                    left join city c on u.cityId = c.id
+                                    left join  userOrder o on u.orderId = o.orderId
+        where u.name = #{name}  and u.password = #{passWord}
+    </select>
+
+<!--    <select id="getUserByNameAndPassWord" parameterType="com.example.myspringboot1.demos.pojo.User" resultMap="UserMap">-->
+<!--        select u.id,c.city from User u-->
+<!--                                               left join city c on u.cityId = c.id-->
+<!--where u.name = #{name}  and u.password = #{passWord}-->
+<!--    </select>-->
+
+<!--    <select id="getUserOrders"  resultMap="UserOrdersMap">-->
+<!--        select o.id,o.orderId,o.orderName from User u-->
+<!--                                                   left join  userOrder o on u.orderId = o.orderId-->
+
+<!--        where u.id = #{id}-->
+<!--    </select>-->
+
+</mapper>
