@@ -1,8 +1,5 @@
 package com.example.myspringboot1.demos.annotionaop;
 
-import java.util.Arrays;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author xieGang
@@ -11,6 +8,8 @@ import java.util.concurrent.Executors;
  **/
 public class Test {
 
+
+
     static int num = 0;
     public static void main(String[] args) throws NoSuchMethodException {
 //        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
@@ -18,7 +17,6 @@ public class Test {
 //        context.refresh();
 //        UserService service = context.getBean(UserService.class);
 //        service.setUserAge1();
-
 
 
 
